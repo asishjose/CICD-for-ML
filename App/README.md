@@ -3,12 +3,12 @@ Guide for Automating Training, Evaluation and Deploying models using Github Acti
 
 ---
 title: Drug Classification
-emoji: 🌍
-colorFrom: indigo
-colorTo: purple
+emoji: 💊
+colorFrom: yellow
+colorTo: red
 sdk: gradio
-sdk_version: 6.13.0
-app_file: app.py
+sdk_version: 4.16.0
+app_file: drug_app.py
 pinned: false
 license: apache-2.0
 short_description: A Drug Classifier model with CICD for ML
