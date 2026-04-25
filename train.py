@@ -44,7 +44,7 @@ f1 = f1_score(y_test, predictions, average="macro")
 
 # Save metrics
 with open("Results/metrics.txt", "w") as f:
-    f.write(f"\nAccuracy = {accuracy.round(2)}, F1 Score = {f1.round(2)}.")
+    f.write(f"\nAccuracy = {round(accuracy, 2)}, F1 Score = {round(f1, 2)}.")
 
 # Save confusion matrix
 cm = confusion_matrix(y_test, predictions, labels=pipe.classes_)
