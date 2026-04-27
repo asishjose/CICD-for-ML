@@ -1,3 +1,5 @@
+PYTHON ?= python3
+
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
@@ -32,12 +34,14 @@ update-branch:
 hf-login:
 	git pull origin update
 	git switch update
-	pip install -U "huggingface_hub[cli]"
-	hf login --token $(HF) --add-to-git-credential
+	$(PYTHON) -m pip install -U "huggingface_hub[cli]"
+	test -n "$(HF)" || (echo "HF token is required" && exit 1)
+	hf auth login --token "$(HF)" --add-to-git-credential
 
 push-hub:
-	hf upload kingabzpro/Drug-Classification ./App --repo-type=space --commit-message="Sync App files"
-	hf upload kingabzpro/Drug-Classification ./Model /Model --repo-type=space --commit-message="Sync Model"
-	hf upload kingabzpro/Drug-Classification ./Results /Metrics --repo-type=space --commit-message="Sync Model"
+	hf upload kingabzpro/Drug-Classification README.md README.md --repo-type=space --commit-message="Sync Space metadata"
+	hf upload kingabzpro/Drug-Classification ./App App --repo-type=space --commit-message="Sync app files"
+	hf upload kingabzpro/Drug-Classification ./Model Model --repo-type=space --commit-message="Sync model files"
+	hf upload kingabzpro/Drug-Classification ./Results Results --repo-type=space --commit-message="Sync metrics"
 
 deploy: hf-login push-hub
