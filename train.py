@@ -5,8 +5,10 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (
-    accuracy_score, f1_score,
-    confusion_matrix, ConfusionMatrixDisplay
+    accuracy_score,
+    f1_score,
+    confusion_matrix,
+    ConfusionMatrixDisplay,
 )
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -26,15 +28,19 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Pipeline
 cat_col = [1, 2, 3]
 num_col = [0, 4]
-transform = ColumnTransformer([
-    ("encoder", OrdinalEncoder(), cat_col),
-    ("num_imputer", SimpleImputer(strategy="median"), num_col),
-    ("num_scaler", StandardScaler(), num_col),
-])
-pipe = Pipeline(steps=[
-    ("preprocessing", transform),
-    ("model", RandomForestClassifier(n_estimators=100, random_state=125)),
-])
+transform = ColumnTransformer(
+    [
+        ("encoder", OrdinalEncoder(), cat_col),
+        ("num_imputer", SimpleImputer(strategy="median"), num_col),
+        ("num_scaler", StandardScaler(), num_col),
+    ]
+)
+pipe = Pipeline(
+    steps=[
+        ("preprocessing", transform),
+        ("model", RandomForestClassifier(n_estimators=100, random_state=125)),
+    ]
+)
 pipe.fit(X_train, y_train)
 
 # Evaluate
@@ -54,5 +60,6 @@ plt.savefig("Results/model_results.png", dpi=120)
 
 # Save model
 import os
+
 os.makedirs("Model", exist_ok=True)
 sio.dump(pipe, "Model/drug_pipeline.skops")
