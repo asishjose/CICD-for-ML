@@ -39,9 +39,9 @@ hf-login:
 	hf auth login --token "$(HF)" --add-to-git-credential
 
 push-hub:
-	hf upload asishjose/Drug-Classification README.md README.md --repo-type=space --create-pr --commit-message="Sync Space metadata"
-	hf upload asishjose/Drug-Classification ./App App --repo-type=space --create-pr --commit-message="Sync app files"
-	hf upload asishjose/Drug-Classification ./Model Model --repo-type=space --create-pr --commit-message="Sync model files"
-	hf upload asishjose/Drug-Classification ./Results Results --repo-type=space --create-pr --commit-message="Sync metrics"
+	hf upload asishjose/Drug-Classification ./App --repo-type=space --commit-message="Sync App files"
+    hf upload asishjose/Drug-Classification ./Model /Model --repo-type=space --commit-message="Sync Model"
+    hf upload asishjose/Drug-Classification ./Results /Metrics --repo-type=space --commit-message="Sync Model"
+
 
 deploy: hf-login push-hub
