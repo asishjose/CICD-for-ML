@@ -1,6 +1,3 @@
-# CICD-for-ML
-Guide for Automating Training, Evaluation and Deploying models using Github Actions
-
 ---
 title: Drug Classification
 emoji: 🌍
@@ -13,4 +10,8 @@ pinned: false
 license: apache-2.0
 short_description: A Drug Classifier model with CICD for ML
 ---
+
+# CICD-for-ML
+Guide for Automating Training, Evaluation and Deploying models using Github Actions
+
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
